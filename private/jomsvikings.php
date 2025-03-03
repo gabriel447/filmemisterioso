@@ -1,6 +1,5 @@
 <?php
 require_once __DIR__ . '/vendor/autoload.php';
-
 $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
 $dotenv->safeLoad();
 $dotenv->required(['API_KEY', 'BASE_URL'])->notEmpty();
@@ -9,7 +8,7 @@ use GuzzleHttp\Client;
 
 $client = new Client([
     'headers' => [
-        'Authorization' => 'Bearer ' . $_SERVER['API_KEY'],
+        'Authorization' => 'Bearer ' . $_ENV['API_KEY'],
         'Content-Type' => 'application/json'
     ],
     'timeout' => 10.0,
@@ -22,50 +21,57 @@ $total = '';
 $genre = '';
 
 if(isset($_POST) && !empty($_POST)) {
-    $genre = $_POST['genre'];
-    $stream = $_POST['stream'];
+    $genre = filter_var($_POST['genre'], FILTER_VALIDATE_INT);
+    $stream = filter_var($_POST['stream'], FILTER_VALIDATE_INT);
 }
 
 try {
-    $sortOptions = [
-        'vote_average.desc',
-        'vote_average.asc',       
-        'popularity.desc',
-        'popularity.asc',
-        'release_date.desc',
-        'release_date.asc'
-    ];
-
-    $queryParams = [
+    $initialQueryParams = [
         'with_watch_providers' => $stream,
-        'page' => 1,
+        'region' => 'BR',
         'language' => 'pt-BR',
         'watch_region' => 'BR',
-        'region' => 'BR',
-        'vote_average.gte' => 7,
+        'with_genres' => $genre,
+        'include_adult' => false,
+        'include_video' => true,
+        'vote_average.gte' => 7.5,
+        'vote_average.lte' => 9.5
     ];
 
-    $queryParams['sort_by'] = $sortOptions[array_rand($sortOptions)];
-
-    if($genre) {
-        $queryParams['with_genres'] = $genre;
-    }
-
-    $response = $client->request('GET', $_SERVER['BASE_URL'] . '/discover/movie', [
-        'query' => $queryParams
+    $initialResponse = $client->request('GET', $_ENV['BASE_URL'] . '/discover/movie', [
+        'query' => $initialQueryParams
     ]);
 
-    if($response->getStatusCode() === 200) {
-        $responseData = json_decode($response->getBody()->getContents(), true);
-        echo json_encode([
-            'success' => true,
-            'data' => $responseData
+    if($initialResponse->getStatusCode() === 200) {
+        $responseData = json_decode($initialResponse->getBody()->getContents(), true);
+        $totalPages = $responseData['total_pages'];
+        $randomPage = random_int(1, $totalPages);
+
+        $finalQueryParams = array_merge($initialQueryParams, ['page' => $randomPage]);
+
+        $finalResponse = $client->request('GET', $_ENV['BASE_URL'] . '/discover/movie', [
+            'query' => $finalQueryParams
         ]);
+
+        if($finalResponse->getStatusCode() === 200) {
+            echo json_encode([
+                'success' => true,
+                'data' => json_decode($finalResponse->getBody()->getContents(), true),
+                'total_pages' => $totalPages,
+                'current_page' => $randomPage
+            ]);
+        } else {
+            echo json_encode([
+                'success' => false,
+                'message' => 'Erro na requisição final',
+                'status_code' => $finalResponse->getStatusCode()
+            ]);
+        }
     } else {
         echo json_encode([
             'success' => false,
-            'message' => 'Erro na requisição',
-            'status_code' => $response->getStatusCode()
+            'message' => 'Erro na requisição inicial',
+            'status_code' => $initialResponse->getStatusCode()
         ]);
     }
 } catch (Exception $e) {
