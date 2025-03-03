@@ -1,12 +1,5 @@
 [[redirects]]
-  # Protege o diretório privado
-  [redirects.rules]
-    pattern = "/private/*"
-    status = 404
-  
-  # Redireciona requisições API para o endpoint correto
-  [[redirects]]
-    from = "/api/*"
-    to = "/private/api/:splat"
-    status = 200
-    force = true
+  from = "/api/*"
+  to = "/private/api/:splat"
+  status = 200
+  force = true

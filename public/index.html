@@ -285,9 +285,8 @@
                 };
 
                 const baseUrl = window.location.origin;
-                console.log(baseUrl);
                 return $.ajax({
-                    url: baseUrl + '/api/jomsvikings.php',
+                    url: `${baseUrl}/api/jomsvikings.php`,
                     type: 'POST',
                     data: data,
                     async: false,
