@@ -1,5 +1,8 @@
 [[redirects]]
   from = "/api/*"
-  to = "/private/api/:splat"
+  to = "/private/:splat"
   status = 200
   force = true
+
+[context.production.environment]
+  NETLIFY_ENVIRONMENT = "production"

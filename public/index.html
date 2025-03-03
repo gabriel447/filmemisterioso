@@ -278,28 +278,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script>
         $(document).ready(function () {
-            function getPageMovie(genre, stream) {
-                const data = {
-                    'genre': genre,
-                    'stream': stream,
-                };
-
-                const baseUrl = window.location.origin;
-                return $.ajax({
-                    url: `${baseUrl}/api/jomsvikings.php`,
-                    type: 'POST',
-                    data: data,
-                    async: false,
-                    success: function (response) {
-                        return response;
-                    },
-                    error: function (xhr, status, error) {
-                        console.error('Erro na requisição:', status, error);
-                        return null;
-                    }
-                }).responseJSON;
-            }
-
             $('#myForm').on('submit', function (event) {
                 event.preventDefault();
 
@@ -308,12 +286,37 @@
                     genre: $('input[name="genre"]:checked').val()
                 };
 
-                const movieResult = getPageMovie(formData.genre, formData.stream);
+                const movieResult = getPageMovie(formData);
                 const pageMovies = movieResult.data.results;
                 const randomMovie = pageMovies[Math.floor(Math.random() * pageMovies.length)];
 
                 displayMovieDetails(randomMovie);
             });
+
+            function getPageMovie(formData) {
+
+                // const baseUrl = '../private';
+                const baseUrl = 'https://filmemisterioso.netlify.app/api';
+                
+                return $.ajax({
+                    url: `${baseUrl}/jomsvikings.php`,
+                    type: 'POST',
+                    data: formData,
+                    async: false,
+                    success: function(response) {
+                        return response;
+                    },
+                    error: function(xhr, status, error) {
+                        console.error('Erro na requisição:', {
+                            status: status,
+                            error: error,
+                            xhrStatus: xhr.status,
+                            xhrResponse: xhr.responseText
+                        });
+                        return null;
+                    }
+                }).responseJSON;
+            }
 
             function displayMovieDetails(movie) {
                 $('#movieOriginalTitle').text('Título Original - ' + movie.original_title);
@@ -354,4 +357,5 @@
         });
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz">
+    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+    crossorigin="anonymous"></script>
