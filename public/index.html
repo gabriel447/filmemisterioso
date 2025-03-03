@@ -16,7 +16,7 @@
         height: 100vh;
         width: 100%;
         box-sizing: border-box;
-    }   
+    }
 
     body {
         background-image: url('src/room.jpg');
@@ -101,7 +101,7 @@
         background-color: rgba(0, 0, 0, 0.1);
     }
 
-    #genre-list > div {
+    #genre-list>div {
         margin-right: 20px;
     }
 </style>
@@ -285,17 +285,15 @@
                 };
 
                 return $.ajax({
-                    url: '/private/jomsvikings.php',
+                    url: 'https://filmemisterioso.netlify.app/private/jomsvikings.php',
                     type: 'POST',
                     data: data,
                     async: false,
                     success: function (response) {
                         return response;
                     },
-error: function (xhr, status, error) {
-    console.error('Erro na requisição:', status, error);
-    alert('Ocorreu um erro ao processar sua solicitação. Por favor, tente novamente.');
-
+                    error: function (xhr, status, error) {
+                        console.error('Erro na requisição:', status, error);
                         return null;
                     }
                 }).responseJSON;
@@ -355,8 +353,4 @@ error: function (xhr, status, error) {
         });
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-        crossorigin="anonymous"></script>
-</body>
-
-</html>
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz">
