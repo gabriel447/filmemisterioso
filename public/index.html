@@ -285,15 +285,17 @@
                 };
 
                 return $.ajax({
-                    url: '../private/jomsvikings.php',
+                    url: '/private/jomsvikings.php',
                     type: 'POST',
                     data: data,
                     async: false,
                     success: function (response) {
                         return response;
                     },
-                    error: function (xhr, status, error) {
-                        console.error('Erro na requisição:', status, error);
+error: function (xhr, status, error) {
+    console.error('Erro na requisição:', status, error);
+    alert('Ocorreu um erro ao processar sua solicitação. Por favor, tente novamente.');
+
                         return null;
                     }
                 }).responseJSON;
