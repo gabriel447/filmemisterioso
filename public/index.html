@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,6 +10,15 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <style>
+
+    html {
+        padding: 0;
+        margin: 0;
+        height: 100vh;
+        width: 100%;
+        box-sizing: border-box;
+    }   
+
     body {
         background-image: url('src/room.jpg');
         background-size: cover;
@@ -17,12 +27,20 @@
     }
 
     .card {
+        display: flex;
+        align-items: center;
+        justify-content: center;
         background-color: white;
         border-radius: 15px;
         padding: 20px;
         margin: 20px auto;
-        max-width: 600px;
+        width: max-content;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    #moviePoster {
+        object-fit: cover;
+        height: 200px;
     }
 
     .form-check-input-stream {
@@ -33,7 +51,7 @@
         width: 50px;
         height: 50px;
         border-radius: 5px;
-        margin-right: 30px;
+        margin-right: 5px;
         transition: border-color 0.3s ease;
     }
 
@@ -82,18 +100,22 @@
     .close-button:hover {
         background-color: rgba(0, 0, 0, 0.1);
     }
-</style>
-<body>
-    <main class="container-fluid">
-        <div class="text-center mt-4">
-            <h1>Que tal um Filme Misterioso ?</h1>
-            <p>Escolha o stream e o gênero, que sortearemos um ótimo filme pra você aproveitar.</p>
-        </div>
 
+    #genre-list > div {
+        margin-right: 20px;
+    }
+</style>
+
+<body>
+    <main class="container-fluid d-flex justify-content-center align-items-center min-vh-100 flex-column">
+        <div class="text-center">
+            <h2>Que tal um Filme Misterioso ?</h2>
+            <p>Escolha o stream e o gênero, <br> que sortearemos um ótimo filme pra você aproveitar.</p>
+        </div>
         <div class="card">
             <form id="myForm">
                 <div class="d-flex">
-                    <div class="col-md-12 text-start">
+                    <div class="col-md-12 text-md-start text-sm-center">
                         <p><strong>Selecione o stream:</strong></p>
                         <div class="d-flex mb-3 mt-2">
                             <div class="form-check-stream">
@@ -133,12 +155,11 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="d-flex">
                     <div class="col-md-12 text-start">
                         <p><strong>Selecione o gênero:</strong></p>
-                        <div class="d-flex my-2">
-                            <div class="col-md-3">
+                        <div id="genre-list" class="d-flex my-2">
+                            <div class="col-md-6">
                                 <div id="checkgenre" class="form-check-genre">
                                     <input class="form-check-input-genre" type="radio" name="genre" id="acao" value="28"
                                         checked>
@@ -164,12 +185,18 @@
                                         value="80">
                                     <label class="form-check-label" for="crime">Crime</label>
                                 </div>
-                            </div>
-                            <div class="col-md-3">
                                 <div id="checkgenre" class="form-check-genre">
-                                    <input class="form-check-input-genre" type="radio" name="genre" id="documentario"
-                                        value="99">
-                                    <label class="form-check-label" for="documentario">Documentário</label>
+                                    <input class="form-check-input-genre" type="radio" name="genre" id="romance"
+                                        value="10749">
+                                    <label class="form-check-label" for="romance">Romance</label>
+                                </div>
+
+                            </div>
+                            <div class="col-md-6">
+                                <div id="checkgenre" class="form-check-genre">
+                                    <input class="form-check-input-genre" type="radio" name="genre"
+                                        id="ficcao-cientifica" value="878">
+                                    <label class="form-check-label" for="ficcao-cientifica">Ficção</label>
                                 </div>
                                 <div id="checkgenre" class="form-check-genre">
                                     <input class="form-check-input-genre" type="radio" name="genre" id="drama"
@@ -177,58 +204,9 @@
                                     <label class="form-check-label" for="drama">Drama</label>
                                 </div>
                                 <div id="checkgenre" class="form-check-genre">
-                                    <input class="form-check-input-genre" type="radio" name="genre" id="familia"
-                                        value="10751">
-                                    <label class="form-check-label" for="familia">Família</label>
-                                </div>
-                                <div id="checkgenre" class="form-check-genre">
                                     <input class="form-check-input-genre" type="radio" name="genre" id="fantasia"
                                         value="14">
                                     <label class="form-check-label" for="fantasia">Fantasia</label>
-                                </div>
-                                <div id="checkgenre" class="form-check-genre">
-                                    <input class="form-check-input-genre" type="radio" name="genre" id="historia"
-                                        value="36">
-                                    <label class="form-check-label" for="historia">História</label>
-                                </div>
-                            </div>
-                            <div class="col-md-3">
-                                <div id="checkgenre" class="form-check-genre">
-                                    <input class="form-check-input-genre" type="radio" name="genre" id="terror"
-                                        value="27">
-                                    <label class="form-check-label" for="terror">Terror</label>
-                                </div>
-                                <div id="checkgenre" class="form-check-genre">
-                                    <input class="form-check-input-genre" type="radio" name="genre" id="musica"
-                                        value="10402">
-                                    <label class="form-check-label" for="musica">Musical</label>
-                                </div>
-                                <div id="checkgenre" class="form-check-genre">
-                                    <input class="form-check-input-genre" type="radio" name="genre" id="misterio"
-                                        value="9648">
-                                    <label class="form-check-label" for="misterio">Mistério</label>
-                                </div>
-                                <div id="checkgenre" class="form-check-genre">
-                                    <input class="form-check-input-genre" type="radio" name="genre" id="romance"
-                                        value="10749">
-                                    <label class="form-check-label" for="romance">Romance</label>
-                                </div>
-                                <div id="checkgenre" class="form-check-genre">
-                                    <input class="form-check-input-genre" type="radio" name="genre"
-                                        id="ficcao-cientifica" value="878">
-                                    <label class="form-check-label" for="ficcao-cientifica">Ficção científica</label>
-                                </div>
-                            </div>
-                            <div class="col-md-3">
-                                <div id="checkgenre" class="form-check-genre">
-                                    <input class="form-check-input-genre" type="radio" name="genre" id="cinema-tv"
-                                        value="10770">
-                                    <label class="form-check-label" for="cinema-tv">Cinema TV</label>
-                                </div>
-                                <div id="checkgenre" class="form-check-genre">
-                                    <input class="form-check-input-genre" type="radio" name="genre" id="thriller"
-                                        value="53">
-                                    <label class="form-check-label" for="thriller">Thriller</label>
                                 </div>
                                 <div id="checkgenre" class="form-check-genre">
                                     <input class="form-check-input-genre" type="radio" name="genre" id="guerra"
@@ -236,22 +214,25 @@
                                     <label class="form-check-label" for="guerra">Guerra</label>
                                 </div>
                                 <div id="checkgenre" class="form-check-genre">
-                                    <input class="form-check-input-genre" type="radio" name="genre" id="faroeste"
-                                        value="37">
-                                    <label class="form-check-label" for="faroeste">Faroeste</label>
+                                    <input class="form-check-input-genre" type="radio" name="genre" id="terror"
+                                        value="27">
+                                    <label class="form-check-label" for="terror">Terror</label>
+                                </div>
+                                <div id="checkgenre" class="form-check-genre">
+                                    <input class="form-check-input-genre" type="radio" name="genre" id="misterio"
+                                        value="9648">
+                                    <label class="form-check-label" for="misterio">Mistério</label>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-
                 <div class="text-start mt-2">
                     <button class="btn btn-primary" type="submit">Sortear</button>
                 </div>
             </form>
         </div>
     </main>
-
     <div id="movieModal" class="modal fade" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-lg modal-dialog-centered">
             <div class="modal-content bg-dark text-white">
@@ -287,7 +268,8 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" id="btn-close" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                    <button type="button" id="btn-close" class="btn btn-secondary"
+                        data-bs-dismiss="modal">Fechar</button>
                 </div>
             </div>
         </div>
@@ -301,16 +283,16 @@
                     'genre': genre,
                     'stream': stream,
                 };
-                
+
                 return $.ajax({
                     url: '../private/jomsvikings.php',
                     type: 'POST',
                     data: data,
                     async: false,
-                    success: function(response) {
+                    success: function (response) {
                         return response;
                     },
-                    error: function(xhr, status, error) {
+                    error: function (xhr, status, error) {
                         console.error('Erro na requisição:', status, error);
                         return null;
                     }
@@ -319,16 +301,16 @@
 
             $('#myForm').on('submit', function (event) {
                 event.preventDefault();
-                
+
                 const formData = {
                     stream: $('input[name="stream"]:checked').val(),
                     genre: $('input[name="genre"]:checked').val()
                 };
-                
+
                 const movieResult = getPageMovie(formData.genre, formData.stream);
                 const pageMovies = movieResult.data.results;
                 const randomMovie = pageMovies[Math.floor(Math.random() * pageMovies.length)];
-                
+
                 displayMovieDetails(randomMovie);
             });
 
@@ -336,16 +318,16 @@
                 $('#movieOriginalTitle').text('Título Original - ' + movie.original_title);
                 $('#movieTitle').text(movie.title);
                 $('#movieReleaseDate').text(new Date(movie.release_date).getFullYear());
-                
-                const posterUrl = movie.poster_path 
+
+                const posterUrl = movie.poster_path
                     ? `https://image.tmdb.org/t/p/w342${movie.poster_path}`
                     : 'src/poster-fallback.jpg';
                 $('#moviePoster').attr('src', posterUrl);
-                
+
                 $('#movieOverview').text(movie.overview);
-                
+
                 $('#movieRating').text(movie.vote_average.toFixed(1));
-                
+
                 $('#movieGenres').empty();
                 movie.genre_ids.forEach(id => {
                     const genreTag = $('<span>')
@@ -353,7 +335,7 @@
                         .text(getGenreName(id));
                     $('#movieGenres').append(genreTag);
                 });
-                
+
                 const modal = new bootstrap.Modal(document.getElementById('movieModal'));
                 modal.show();
             }
@@ -374,4 +356,5 @@
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
 </body>
+
 </html>
