@@ -1,2 +1,3 @@
-# Ignore environment variables
-.env
+# Add your ignore patterns here
+/vendor/
+/.env
