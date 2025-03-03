@@ -294,30 +294,22 @@
             });
 
             function getPageMovie(formData) {
-
-                // const baseUrl = '../private';
-                const baseUrl = 'https://filmemisterioso.netlify.app/api';
+                const baseUrl = 'https://filmemisterioso.netlify.app';
                 
                 return $.ajax({
-                    url: `${baseUrl}/jomsvikings.php`,
+                    url: `${baseUrl}/api/jomsvikings.php`,
                     type: 'POST',
                     data: formData,
                     async: false,
                     success: function(response) {
-                        return response;
+                        return response?.data || null;
                     },
                     error: function(xhr, status, error) {
-                        console.error('Erro na requisição:', {
-                            status: status,
-                            error: error,
-                            xhrStatus: xhr.status,
-                            xhrResponse: xhr.responseText
-                        });
+                        console.error('Erro:', error);
                         return null;
                     }
                 }).responseJSON;
             }
-
             function displayMovieDetails(movie) {
                 $('#movieOriginalTitle').text('Título Original - ' + movie.original_title);
                 $('#movieTitle').text(movie.title);
