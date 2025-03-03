@@ -302,14 +302,15 @@
                     data: formData,
                     async: false,
                     success: function(response) {
-                        return response?.data || null;
+                        return response;
                     },
                     error: function(xhr, status, error) {
-                        console.error('Erro:', error);
+                        console.error('Erro na requisição:', error);
                         return null;
                     }
                 }).responseJSON;
             }
+            
             function displayMovieDetails(movie) {
                 $('#movieOriginalTitle').text('Título Original - ' + movie.original_title);
                 $('#movieTitle').text(movie.title);
