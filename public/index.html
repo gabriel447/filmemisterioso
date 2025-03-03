@@ -284,8 +284,10 @@
                     'stream': stream,
                 };
 
+                const baseUrl = window.location.origin;
+                
                 return $.ajax({
-                    url: 'https://filmemisterioso.netlify.app/private/jomsvikings.php',
+                    url: baseUrl + '/api/jomsvikings.php',
                     type: 'POST',
                     data: data,
                     async: false,
