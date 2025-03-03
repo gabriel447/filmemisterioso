@@ -35,7 +35,10 @@ try {
         'include_adult' => false,
         'include_video' => true,
         'vote_average.gte' => 7.5,
-        'vote_average.lte' => 9.5
+        'vote_average.lte' => 9.5,
+        'primary_release_date.gte' => '2001-07-17',
+        'primary_release_date.lte' => date('Y-m-d'),
+        'with_original_language' => 'en'
     ];
 
     $initialResponse = $client->request('GET', $_ENV['BASE_URL'] . '/discover/movie', [
@@ -46,9 +49,9 @@ try {
         $responseData = json_decode($initialResponse->getBody()->getContents(), true);
         $totalPages = $responseData['total_pages'];
         $randomPage = random_int(1, $totalPages);
-
+        
         $finalQueryParams = array_merge($initialQueryParams, ['page' => $randomPage]);
-
+        
         $finalResponse = $client->request('GET', $_ENV['BASE_URL'] . '/discover/movie', [
             'query' => $finalQueryParams
         ]);
