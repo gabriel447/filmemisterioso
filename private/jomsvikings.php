@@ -33,12 +33,7 @@ try {
         'language' => 'pt-BR',
         'watch_region' => 'BR',
         'with_genres' => $genre,
-        'include_adult' => false,
-        'include_video' => true,
-        'vote_average.gte' => 7.5,
-        'vote_average.lte' => 9.5,
-        'primary_release_date.gte' => '2001-07-17',
-        'primary_release_date.lte' => date('Y-m-d'),
+        'vote_average.gte' => 7,
         'with_original_language' => 'en'
     ];
 
