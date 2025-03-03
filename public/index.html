@@ -294,10 +294,8 @@
             });
 
             function getPageMovie(formData) {
-                const baseUrl = 'https://filmemisterioso.netlify.app';
-                
                 return $.ajax({
-                    url: `${baseUrl}/api/jomsvikings.php`,
+                    url: 'https://filmemisterioso.netlify.app/private/jomsvikings.php',
                     type: 'POST',
                     data: formData,
                     async: false,
@@ -310,7 +308,7 @@
                     }
                 }).responseJSON;
             }
-            
+
             function displayMovieDetails(movie) {
                 $('#movieOriginalTitle').text('Título Original - ' + movie.original_title);
                 $('#movieTitle').text(movie.title);
