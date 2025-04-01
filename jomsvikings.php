@@ -28,12 +28,12 @@ if(isset($_POST) && !empty($_POST)) {
 
 try {
     $initialQueryParams = [
-        'with_watch_providers' => $stream,
+        'with_original_language' => 'en',
         'language' => 'pt-BR',
         'region' => 'BR',
+        'with_watch_providers' => $stream,
         'with_genres' => $genre,
-        'vote_average.gte' => 7,
-        'with_original_language' => 'en'
+        'vote_average.gte' => 7
     ];
 
     $initialResponse = $client->request('GET', $_ENV['BASE_URL'] . '/discover/movie', [
