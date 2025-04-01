@@ -29,9 +29,7 @@ if(isset($_POST) && !empty($_POST)) {
 try {
     $initialQueryParams = [
         'with_watch_providers' => $stream,
-        'region' => 'BR',
         'language' => 'pt-BR',
-        'watch_region' => 'BR',
         'with_genres' => $genre,
         'vote_average.gte' => 7,
         'with_original_language' => 'en'
