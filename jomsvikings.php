@@ -44,10 +44,7 @@ try {
         $totalPages = $responseData['total_pages'];
         $randomPage = random_int(1, $totalPages);
         
-        $finalQueryParams = array_merge($initialQueryParams, [
-            'page' => $randomPage,
-            'watch_region' => 'BR'
-        ]);
+        $finalQueryParams = array_merge($initialQueryParams, ['page' => $randomPage]);
         
         $finalResponse = $client->request('GET', $_ENV['BASE_URL'] . '/discover/movie', [
             'query' => $finalQueryParams
