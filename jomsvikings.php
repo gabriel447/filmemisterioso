@@ -27,28 +27,28 @@ if(isset($_POST) && !empty($_POST)) {
 }
 
 try {
-    $baseParams = [
+    $initialQueryParams = [
         'with_watch_providers' => $stream,
         'language' => 'pt-BR',
         'with_genres' => $genre,
         'vote_average.gte' => 7,
-        'with_original_language' => 'en',
-        'watch_region' => 'BR'
+        'with_original_language' => 'en'
     ];
 
     $initialResponse = $client->request('GET', $_ENV['BASE_URL'] . '/discover/movie', [
-        'query' => $baseParams
+        'query' => $initialQueryParams
     ]);
 
     if($initialResponse->getStatusCode() === 200) {
         $responseData = json_decode($initialResponse->getBody()->getContents(), true);
         $totalPages = $responseData['total_pages'];
         $randomPage = random_int(1, $totalPages);
-
-        $finalQueryParams = array_merge($baseParams, [
-            'page' => $randomPage
+        
+        $finalQueryParams = array_merge($initialQueryParams, [
+            'page' => $randomPage,
+            'watch_region' => 'BR'
         ]);
-
+        
         $finalResponse = $client->request('GET', $_ENV['BASE_URL'] . '/discover/movie', [
             'query' => $finalQueryParams
         ]);
