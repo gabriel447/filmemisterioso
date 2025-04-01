@@ -1,0 +1,94 @@
+html {
+    padding: 0;
+    margin: 0;
+    height: 100vh;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+body {
+    background-image: url('src/room.jpg');
+    background-size: cover;
+    background-position: center;
+    color: white;
+    width: 100%;
+}
+
+.card {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    border-radius: 15px;
+    padding: 20px;
+    margin: 20px auto;
+    width: max-content;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+#moviePoster {
+    object-fit: cover;
+    height: auto;
+}
+
+.form-check-input-stream {
+    display: none;
+}
+
+.stream-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 5px;
+    margin-right: 5px;
+    transition: border-color 0.3s ease;
+}
+
+.form-check-input-stream:checked+label .stream-icon {
+    border: 2px solid #007bff !important;
+}
+
+.modal-backdrop.show {
+    opacity: 0.9;
+}
+
+#moviePoster {
+    transition: transform 0.3s ease;
+}
+
+#moviePoster:hover {
+    transform: scale(1.05);
+}
+
+.genre-tag {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    padding: 4px 12px;
+    font-size: 0.9rem;
+    transition: background-color 0.3s ease;
+}
+
+.genre-tag:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.close-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: #000;
+    padding: 5px;
+    border-radius: 50%;
+    transition: background-color 0.3s ease;
+}
+
+.close-button:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+#genre-list>div {
+    margin-right: 20px;
+}
