@@ -30,6 +30,7 @@ try {
     $initialQueryParams = [
         'with_watch_providers' => $stream,
         'language' => 'pt-BR',
+        'region' => 'BR',
         'with_genres' => $genre,
         'vote_average.gte' => 7,
         'with_original_language' => 'en'
