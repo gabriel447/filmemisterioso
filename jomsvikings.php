@@ -28,6 +28,7 @@ if(isset($_POST) && !empty($_POST)) {
 }
 
 try {
+    $withoutKeywords = ['9715', '210024'];
     $initialQueryParams = [
         'with_original_language' => 'en',
         'language' => 'pt-BR',
@@ -35,7 +36,12 @@ try {
         'region' => 'BR',
         'with_watch_providers' => $stream,
         'with_genres' => $genre,
-        'vote_average.gte' => 7.5
+        'vote_average.gte' => 7.5,
+        'vote_average.lte' => 9.9,
+        'vote_count.gte' => 100,
+        'with_runtime.gte' => 60,
+        'sort_by' => 'vote_average.desc',
+        'without_keywords' => implode(',', $withoutKeywords)
     ];
 
     if ($genre != '16') {
