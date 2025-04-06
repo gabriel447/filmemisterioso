@@ -30,6 +30,7 @@ try {
     $initialQueryParams = [
         'with_original_language' => 'en',
         'language' => 'pt-BR',
+        'watch_region' => 'BR',
         'region' => 'BR',
         'with_watch_providers' => $stream,
         'with_genres' => $genre,
