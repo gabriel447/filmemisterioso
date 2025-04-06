@@ -27,8 +27,6 @@ if(isset($_POST) && !empty($_POST)) {
     $stream = filter_var($_POST['stream'], FILTER_VALIDATE_INT);
 }
 
-$without = $genre != '16' ? '16' : '';
-
 try {
     $initialQueryParams = [
         'with_original_language' => 'en',
@@ -40,8 +38,8 @@ try {
         'vote_average.gte' => 7.5
     ];
 
-    if ($without == '') {
-        $initialQueryParams['without_genres'] = $without;
+    if ($genre != '16') {
+        $initialQueryParams['without_genres'] = '16';
     }
 
     $initialResponse = $client->request('GET', $_ENV['BASE_URL'] . '/discover/movie', [
