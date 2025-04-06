@@ -40,7 +40,7 @@ try {
         //remove os nota 10 bugados
         'vote_average.lte' => 9.9,
         //tentando remover os standups
-        'with_runtime.gte' => 80,
+        'with_runtime.gte' => 90,
         'without_keywords' => implode(',', $withoutKeywords)
     ];
 
