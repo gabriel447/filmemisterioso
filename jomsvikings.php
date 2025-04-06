@@ -27,7 +27,7 @@ if(isset($_POST) && !empty($_POST)) {
     $stream = filter_var($_POST['stream'], FILTER_VALIDATE_INT);
 }
 
-$without = $genre !== '16' ? '16' : '';
+$without = $genre != '16' ? '16' : '';
 
 try {
     $initialQueryParams = [
@@ -40,7 +40,7 @@ try {
         'vote_average.gte' => 7.5
     ];
 
-    if (!empty($without)) {
+    if ($without == '') {
         $initialQueryParams['without_genres'] = $without;
     }
 
