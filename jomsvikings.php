@@ -38,7 +38,7 @@ try {
         'with_genres' => $genre,
         'vote_average.gte' => 7.5,
         'vote_average.lte' => 9.9,
-        'sort_by' => 'vote_average.desc',
+        'with_runtime.gte' => 80,
         'without_keywords' => implode(',', $withoutKeywords)
     ];
 
