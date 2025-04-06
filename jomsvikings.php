@@ -37,9 +37,12 @@ try {
         'region' => 'BR',
         'with_watch_providers' => $stream,
         'with_genres' => $genre,
-        'without_genres' => $without,
         'vote_average.gte' => 7.5
     ];
+
+    if (!empty($without)) {
+        $initialQueryParams['without_genres'] = $without;
+    }
 
     $initialResponse = $client->request('GET', $_ENV['BASE_URL'] . '/discover/movie', [
         'query' => $initialQueryParams
