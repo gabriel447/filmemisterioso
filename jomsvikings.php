@@ -37,11 +37,14 @@ try {
         'with_watch_providers' => $stream,
         'with_genres' => $genre,
         'vote_average.gte' => 7.5,
+        //remove os nota 10 bugados
         'vote_average.lte' => 9.9,
+        //tentando remover os standups
         'with_runtime.gte' => 80,
         'without_keywords' => implode(',', $withoutKeywords)
     ];
 
+    //remove animações quando selecinado outros generos
     if ($genre != '16') {
         $initialQueryParams['without_genres'] = '16';
     }
