@@ -20,11 +20,14 @@ header('Content-Type: application/json');
 
 $total = '';
 $genre = '';
+$without = '';
 
 if(isset($_POST) && !empty($_POST)) {
     $genre = filter_var($_POST['genre'], FILTER_VALIDATE_INT);
     $stream = filter_var($_POST['stream'], FILTER_VALIDATE_INT);
 }
+
+$without = $genre !== '16' ? '16' : '';
 
 try {
     $initialQueryParams = [
@@ -34,6 +37,7 @@ try {
         'region' => 'BR',
         'with_watch_providers' => $stream,
         'with_genres' => $genre,
+        'without_genres' => $without,
         'vote_average.gte' => 7.5
     ];
 
