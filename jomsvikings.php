@@ -33,7 +33,7 @@ try {
         'region' => 'BR',
         'with_watch_providers' => $stream,
         'with_genres' => $genre,
-        'vote_average' => 7.5
+        'vote_average.gte' => 7.5
     ];
 
     $initialResponse = $client->request('GET', $_ENV['BASE_URL'] . '/discover/movie', [
