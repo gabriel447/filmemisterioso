@@ -64,51 +64,53 @@ body {
     box-shadow: 0 8px 20px rgba(13, 110, 253, 0.3);
 }
 
-/* Genre Selection - Grid Layout with visible inputs */
+/* Genre Selection - Pills (Chips) Layout */
 .genre-container {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr); /* 2 columns on mobile */
-    gap: 12px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
     justify-content: center;
     max-width: 100%;
     margin: 0 auto;
 }
 
-@media (min-width: 576px) {
-    .genre-container {
-        grid-template-columns: repeat(3, 1fr); /* 3 columns on tablet/desktop */
-        max-width: 450px;
-    }
-}
-
 .form-check-genre {
-    display: flex;
-    align-items: center;
-    padding: 8px;
-    transition: all 0.2s ease;
-}
-
-.form-check-genre:hover {
-    background-color: rgba(0,0,0,0.03);
-    border-radius: 8px;
+    margin: 0;
+    padding: 0;
 }
 
 .form-check-input-genre {
-    display: inline-block;
-    width: 18px;
-    height: 18px;
-    margin-right: 10px;
-    cursor: pointer;
-    accent-color: #0d6efd; /* Bootstrap primary blue */
+    display: none; /* Hide default radio */
 }
 
-.form-check-label {
+.form-check-genre .form-check-label {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #f8f9fa;
+    border: 1px solid #dee2e6;
+    border-radius: 50px; /* Pill shape */
     cursor: pointer;
-    color: #495057;
+    transition: all 0.2s ease;
     font-weight: 500;
-    font-size: 0.95rem;
-    margin-top: 1px; /* Visual alignment */
+    color: #495057;
+    user-select: none;
+    font-size: 0.95rem; /* Readable on mobile */
 }
+
+.form-check-genre:hover .form-check-label {
+    background-color: #e9ecef;
+    transform: translateY(-1px);
+}
+
+/* Selected Genre State */
+.form-check-input-genre:checked + .form-check-label {
+    background-color: #0d6efd;
+    color: white;
+    border-color: #0d6efd;
+    box-shadow: 0 4px 10px rgba(13, 110, 253, 0.3);
+    transform: translateY(-2px);
+}
+
 
 /* Modal Styling */
 .modal-content {
