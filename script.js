@@ -8,6 +8,13 @@ $(document).ready(function () {
         };
 
         const movieResult = getPageMovie(formData);
+
+        if (!movieResult || !movieResult.success) {
+            console.error('Erro na API:', movieResult);
+            alert('Ocorreu um erro: ' + (movieResult && movieResult.message ? movieResult.message : 'Erro desconhecido. Verifique o console.'));
+            return;
+        }
+
         const pageMovies = movieResult.data.results;
         const randomMovie = pageMovies[Math.floor(Math.random() * pageMovies.length)];
 

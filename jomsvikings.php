@@ -9,7 +9,6 @@ use GuzzleHttp\Client;
 
 $client = new Client([
     'headers' => [
-        'Authorization' => 'Bearer ' . $_ENV['API_KEY'],
         'Content-Type' => 'application/json'
     ],
     'timeout' => 10.0,
@@ -30,6 +29,7 @@ if(isset($_POST) && !empty($_POST)) {
 try {
     $withoutKeywords = ['9715', '210024'];
     $initialQueryParams = [
+        'api_key' => $_ENV['API_KEY'],
         'with_original_language' => 'en',
         'language' => 'pt-BR',
         'watch_region' => 'BR',
