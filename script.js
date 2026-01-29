@@ -2,23 +2,42 @@ $(document).ready(function () {
     $('#myForm').on('submit', function (event) {
         event.preventDefault();
 
+        const $btn = $(this).find('button[type="submit"]');
+        const originalText = $btn.html();
+
+        // Show spinner and disable button
+        $btn.prop('disabled', true).html('<span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>Sorteando...');
+
         const formData = {
             stream: $('input[name="stream"]:checked').val(),
             genre: $('input[name="genre"]:checked').val()
         };
 
-        const movieResult = getPageMovie(formData);
+        getPageMovie(formData)
+            .done(function(movieResult) {
+                if (!movieResult || !movieResult.success) {
+                    console.error('Erro na API:', movieResult);
+                    alert('Ocorreu um erro: ' + (movieResult && movieResult.message ? movieResult.message : 'Erro desconhecido. Verifique o console.'));
+                    return;
+                }
 
-        if (!movieResult || !movieResult.success) {
-            console.error('Erro na API:', movieResult);
-            alert('Ocorreu um erro: ' + (movieResult && movieResult.message ? movieResult.message : 'Erro desconhecido. Verifique o console.'));
-            return;
-        }
+                const pageMovies = movieResult.data.results;
+                if (!pageMovies || pageMovies.length === 0) {
+                    alert('Nenhum filme encontrado.');
+                    return;
+                }
+                const randomMovie = pageMovies[Math.floor(Math.random() * pageMovies.length)];
 
-        const pageMovies = movieResult.data.results;
-        const randomMovie = pageMovies[Math.floor(Math.random() * pageMovies.length)];
-
-        displayMovieDetails(randomMovie);
+                displayMovieDetails(randomMovie);
+            })
+            .fail(function(xhr, status, error) {
+                console.error('Erro na requisição:', error);
+                alert('Erro ao buscar filmes. Tente novamente.');
+            })
+            .always(function() {
+                // Restore button state
+                $btn.prop('disabled', false).html(originalText);
+            });
     });
 
     function getPageMovie(formData) {
@@ -27,15 +46,8 @@ $(document).ready(function () {
             url: dev,
             type: 'POST',
             data: formData,
-            async: false,
-            success: function(response) {
-                return response;
-            },
-            error: function(xhr, status, error) {
-                console.error('Erro na requisição:', error);
-                return null;
-            }
-        }).responseJSON;
+            dataType: 'json'
+        });
     }
 
     function displayMovieDetails(movie) {
@@ -50,7 +62,7 @@ $(document).ready(function () {
 
         $('#movieOverview').text(movie.overview);
 
-        $('#movieRating').text(movie.vote_average.toFixed(1));
+        $('#movieRating').text(movie.vote_average.toFixed(1).replace('.', ','));
 
         $('#movieGenres').empty();
         movie.genre_ids.forEach(id => {
@@ -62,6 +74,11 @@ $(document).ready(function () {
 
         const modal = new bootstrap.Modal(document.getElementById('movieModal'));
         modal.show();
+
+        // Refresh page on modal close to prevent cache issues
+        document.getElementById('movieModal').addEventListener('hidden.bs.modal', function () {
+            location.reload();
+        });
     }
 
     function getGenreName(id) {

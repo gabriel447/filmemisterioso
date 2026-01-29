@@ -12,168 +12,141 @@
 </head>
 
 <body>
-    <main class="container d-flex justify-content-center align-items-center min-vh-100 flex-column">
-        <div class="text-center">
-            <h2>Que tal um Filme Misterioso ?</h2>
-            <p>Escolha o stream e o gênero, <br> que sortearemos um ótimo filme pra você aproveitar.</p>
+    <main class="container d-flex justify-content-center align-items-center min-vh-100 flex-column py-4">
+        <div class="text-center mb-4 text-white">
+            <h2>Que tal um Filme Misterioso?</h2>
+            <p>Escolha o stream e o gênero,<br>que sortearemos um ótimo filme pra você aproveitar.</p>
         </div>
         <div class="card">
             <form id="myForm">
-                <div class="d-flex">
-                    <div class="col-md-12 text-md-start text-sm-center">
-                        <p><strong>Selecione o stream:</strong></p>
-                        <div class="d-flex mb-3 mt-2">
-                            <div class="form-check-stream">
-                                <input id="netflix" class="form-check-input-stream" type="radio" name="stream" value="8"
-                                    checked>
-                                <label class="form-check-label" for="netflix">
-                                    <img src="src/icons8-netflix-48.png" class="stream-icon p-1" alt="Netflix">
-                                </label>
-                            </div>
-                            <div class="form-check-stream">
-                                <input id="amazon-prime" class="form-check-input-stream" type="radio" name="stream"
-                                    value="119">
-                                <label class="form-check-label" for="amazon-prime">
-                                    <img src="src/icons8-amazon-prime-video-48.png" class="stream-icon"
-                                        alt="Amazon Prime">
-                                </label>
-                            </div>
-                            <div class="form-check-stream">
-                                <input id="hbo" class="form-check-input-stream" type="radio" name="stream" value="1899">
-                                <label class="form-check-label" for="hbo">
-                                    <img src="src/icons8-hbo-max-50.png" class="stream-icon" alt="HBO">
-                                </label>
-                            </div>
-                            <!-- <div class="form-check-stream">
-                                <input id="apple" class="form-check-input-stream" type="radio" name="stream" value="231">
-                                <label class="form-check-label" for="apple">
-                                    <img src="src/icons8-apple-tv-48.png" class="stream-icon" alt="Apple">
-                                </label>
-                            </div> -->
-                            <div class="form-check-stream">
-                                <input id="disney" class="form-check-input-stream" type="radio" name="stream"
-                                    value="337">
-                                <label class="form-check-label" for="disney">
-                                    <img src="src/icons8-disney-plus-48.png" class="stream-icon" alt="Disney">
-                                </label>
-                            </div>
+                <div class="mb-4 text-center">
+                    <p class="mb-3 text-muted"><strong>Selecione o stream:</strong></p>
+                    <!-- Stream Selection -->
+                    <div class="stream-container">
+                        <div class="form-check-stream">
+                            <input class="form-check-input-stream" type="radio" name="stream" id="netflix" value="8" required checked>
+                            <label class="form-check-label" for="netflix">
+                                <img src="src/icon-netflix.png" class="stream-icon" alt="Netflix">
+                            </label>
+                        </div>
+                        <div class="form-check-stream">
+                            <input id="amazon-prime" class="form-check-input-stream" type="radio" name="stream" value="119">
+                            <label class="form-check-label" for="amazon-prime">
+                                <img src="src/icon-prime.png" class="stream-icon" alt="Amazon Prime">
+                            </label>
+                        </div>
+                        <div class="form-check-stream">
+                            <input id="hbo" class="form-check-input-stream" type="radio" name="stream" value="1899">
+                            <label class="form-check-label" for="hbo">
+                                <img src="src/icon-hbo.png" class="stream-icon" alt="HBO">
+                            </label>
+                        </div>
+                        <div class="form-check-stream">
+                            <input id="disney" class="form-check-input-stream" type="radio" name="stream" value="337">
+                            <label class="form-check-label" for="disney">
+                                <img src="src/icon-disney.png" class="stream-icon" alt="Disney">
+                            </label>
                         </div>
                     </div>
                 </div>
-                <div class="d-flex">
-                    <div class="col-md-12 text-start">
-                        <p><strong>Selecione o gênero:</strong></p>
-                        <div id="genre-list" class="d-flex my-2">
-                            <div class="col-md-6">
-                                <div id="checkgenre" class="form-check-genre">
-                                    <input class="form-check-input-genre" type="radio" name="genre" id="acao" value="28"
-                                        checked>
-                                    <label class="form-check-label" for="acao">Ação</label>
-                                </div>
-                                <div id="checkgenre" class="form-check-genre">
-                                    <input class="form-check-input-genre" type="radio" name="genre" id="aventura"
-                                        value="12">
-                                    <label class="form-check-label" for="aventura">Aventura</label>
-                                </div>
-                                <div id="checkgenre" class="form-check-genre">
-                                    <input class="form-check-input-genre" type="radio" name="genre" id="animacao"
-                                        value="16">
-                                    <label class="form-check-label" for="animacao">Animação</label>
-                                </div>
-                                <div id="checkgenre" class="form-check-genre">
-                                    <input class="form-check-input-genre" type="radio" name="genre" id="comedia"
-                                        value="35">
-                                    <label class="form-check-label" for="comedia">Comédia</label>
-                                </div>
-                                <div id="checkgenre" class="form-check-genre">
-                                    <input class="form-check-input-genre" type="radio" name="genre" id="crime"
-                                        value="80">
-                                    <label class="form-check-label" for="crime">Crime</label>
-                                </div>
-                                <div id="checkgenre" class="form-check-genre">
-                                    <input class="form-check-input-genre" type="radio" name="genre" id="romance"
-                                        value="10749">
-                                    <label class="form-check-label" for="romance">Romance</label>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div id="checkgenre" class="form-check-genre">
-                                    <input class="form-check-input-genre" type="radio" name="genre"
-                                        id="ficcao-cientifica" value="878">
-                                    <label class="form-check-label" for="ficcao-cientifica">Ficção</label>
-                                </div>
-                                <div id="checkgenre" class="form-check-genre">
-                                    <input class="form-check-input-genre" type="radio" name="genre" id="drama"
-                                        value="18">
-                                    <label class="form-check-label" for="drama">Drama</label>
-                                </div>
-                                <div id="checkgenre" class="form-check-genre">
-                                    <input class="form-check-input-genre" type="radio" name="genre" id="fantasia"
-                                        value="14">
-                                    <label class="form-check-label" for="fantasia">Fantasia</label>
-                                </div>
-                                <div id="checkgenre" class="form-check-genre">
-                                    <input class="form-check-input-genre" type="radio" name="genre" id="guerra"
-                                        value="10752">
-                                    <label class="form-check-label" for="guerra">Guerra</label>
-                                </div>
-                                <div id="checkgenre" class="form-check-genre">
-                                    <input class="form-check-input-genre" type="radio" name="genre" id="terror"
-                                        value="27">
-                                    <label class="form-check-label" for="terror">Terror</label>
-                                </div>
-                                <div id="checkgenre" class="form-check-genre">
-                                    <input class="form-check-input-genre" type="radio" name="genre" id="suspense"
-                                        value="9648">
-                                    <label class="form-check-label" for="suspense">Suspense</label>
-                                </div>
-                            </div>
+
+                <div class="mb-4">
+                    <p class="mb-3 text-center text-muted"><strong>Selecione o gênero:</strong></p>
+                    <div class="genre-container">
+                        <div class="form-check-genre">
+                            <input class="form-check-input-genre" type="radio" name="genre" id="acao" value="28" checked>
+                            <label class="form-check-label" for="acao">Ação</label>
+                        </div>
+                        <div class="form-check-genre">
+                            <input class="form-check-input-genre" type="radio" name="genre" id="aventura" value="12">
+                            <label class="form-check-label" for="aventura">Aventura</label>
+                        </div>
+                        <div class="form-check-genre">
+                            <input class="form-check-input-genre" type="radio" name="genre" id="animacao" value="16">
+                            <label class="form-check-label" for="animacao">Animação</label>
+                        </div>
+                        <div class="form-check-genre">
+                            <input class="form-check-input-genre" type="radio" name="genre" id="comedia" value="35">
+                            <label class="form-check-label" for="comedia">Comédia</label>
+                        </div>
+                        <div class="form-check-genre">
+                            <input class="form-check-input-genre" type="radio" name="genre" id="crime" value="80">
+                            <label class="form-check-label" for="crime">Crime</label>
+                        </div>
+                        <div class="form-check-genre">
+                            <input class="form-check-input-genre" type="radio" name="genre" id="romance" value="10749">
+                            <label class="form-check-label" for="romance">Romance</label>
+                        </div>
+                        <div class="form-check-genre">
+                            <input class="form-check-input-genre" type="radio" name="genre" id="ficcao-cientifica" value="878">
+                            <label class="form-check-label" for="ficcao-cientifica">Ficção</label>
+                        </div>
+                        <div class="form-check-genre">
+                            <input class="form-check-input-genre" type="radio" name="genre" id="drama" value="18">
+                            <label class="form-check-label" for="drama">Drama</label>
+                        </div>
+                        <div class="form-check-genre">
+                            <input class="form-check-input-genre" type="radio" name="genre" id="fantasia" value="14">
+                            <label class="form-check-label" for="fantasia">Fantasia</label>
+                        </div>
+                        <div class="form-check-genre">
+                            <input class="form-check-input-genre" type="radio" name="genre" id="guerra" value="10752">
+                            <label class="form-check-label" for="guerra">Guerra</label>
+                        </div>
+                        <div class="form-check-genre">
+                            <input class="form-check-input-genre" type="radio" name="genre" id="terror" value="27">
+                            <label class="form-check-label" for="terror">Terror</label>
+                        </div>
+                        <div class="form-check-genre">
+                            <input class="form-check-input-genre" type="radio" name="genre" id="suspense" value="9648">
+                            <label class="form-check-label" for="suspense">Suspense</label>
                         </div>
                     </div>
                 </div>
-                <div class="text-start mt-2">
-                    <button class="btn btn-primary" type="submit">Sortear</button>
+
+                <div class="text-center mt-4">
+                    <button class="btn btn-primary btn-lg w-100 rounded-pill shadow-sm" type="submit">
+                        <i class="fas fa-random me-2"></i>Sortear Filme
+                    </button>
                 </div>
             </form>
         </div>
     </main>
     <div id="movieModal" class="modal fade" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog modal-lg modal-dialog-centered">
-            <div class="modal-content bg-dark text-white">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="movieOriginalTitle"></h5>
+        <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content text-white">
+                <div class="modal-header border-bottom-0">
+                    <h5 class="modal-title text-muted fs-6" id="movieOriginalTitle"></h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="modal-body">
-                    <div class="row">
-                        <div class="col-md-4">
-                            <img id="moviePoster" src="" alt="" class="img-fluid rounded shadow-lg">
+                <div class="modal-body pt-0">
+                    <div class="row g-4">
+                        <div class="col-md-5 col-lg-4 text-center text-md-start">
+                            <img id="moviePoster" src="" alt="" class="img-fluid rounded-3 shadow-lg w-100" style="max-width: 300px;">
                         </div>
-                        <div class="col-md-8">
-                            <div class="mb-3">
-                                <h2 id="movieTitle" class="fw-bold"></h2>
-                                <span id="movieReleaseDate" class="badge bg-secondary ms-2"></span>
-                            </div>
-                            <div class="mb-3">
-                                <p id="movieOverview" class="text-white"></p>
-                            </div>
-                            <div class="mb-3">
-                                <div class="d-flex align-items-center gap-2">
-                                    <span class="fas fa-star text-warning"></span>
-                                    <span id="movieRating" class="fw-bold"></span>
-                                    <span class="text-muted">/10</span>
+                        <div class="col-md-7 col-lg-8">
+                            <div class="mb-4 text-center text-md-start">
+                                <h2 id="movieTitle" class="fw-bold display-6 mb-2"></h2>
+                                <div class="d-flex align-items-center justify-content-center justify-content-md-start gap-3 mb-3">
+                                    <span id="movieReleaseDate" class="badge bg-secondary"></span>
+                                    <div class="d-flex align-items-center text-warning">
+                                        <i class="fas fa-star me-1"></i>
+                                        <span id="movieRating" class="fw-bold fs-5"></span>
+                                        <span class="text-muted small ms-1">/10</span>
+                                    </div>
                                 </div>
+                                <div id="movieGenres" class="d-flex flex-wrap gap-2 justify-content-center justify-content-md-start mb-3"></div>
                             </div>
-                            <div class="mb-3">
-                                <small>Gêneros:</small>
-                                <div id="movieGenres" class="d-flex flex-wrap gap-2"></div>
+                            
+                            <div class="mb-4">
+                                <h5 class="fw-bold mb-2">Sinopse</h5>
+                                <p id="movieOverview" class="text-light opacity-75 lead fs-6"></p>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" id="btn-close" class="btn btn-secondary"
-                        data-bs-dismiss="modal">Fechar</button>
+                <div class="modal-footer border-top-0">
+                    <button type="button" id="btn-close" class="btn btn-outline-light rounded-pill px-4" data-bs-dismiss="modal">Fechar</button>
                 </div>
             </div>
         </div>
