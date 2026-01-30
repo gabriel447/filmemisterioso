@@ -18,8 +18,13 @@ body {
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     width: 100%;
-    max-width: 600px;
+    max-width: 500px;
     margin: 0 auto; /* Center card */
+}
+
+.hero-text {
+    max-width: 500px;
+    width: 100%;
 }
 
 /* Stream Selection */
