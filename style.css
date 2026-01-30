@@ -149,6 +149,31 @@ body {
     margin-left: 5px;
 }
 
+/* Mobile Responsiveness */
+@media (max-width: 576px) {
+    .card {
+        width: 90%; /* More side spacing on mobile */
+        padding: 1.5rem; /* Slightly less padding inside card */
+    }
+
+    .hero-text {
+        width: 90%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .stream-icon {
+        width: 50px; /* Smaller icons on mobile */
+        height: 50px;
+        padding: 8px;
+    }
+
+    .form-check-genre .form-check-label {
+        padding: 8px 16px; /* Smaller pills */
+        font-size: 0.9rem;
+    }
+}
+
 .read-more-link:hover {
     color: #ccc;
 }
