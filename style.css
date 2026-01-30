@@ -31,7 +31,7 @@ body {
 .stream-container {
     display: flex;
     justify-content: center;
-    gap: 15px;
+    gap: 25px; /* Increased gap from 15px to 25px */
     margin-bottom: 20px;
     flex-wrap: wrap; /* Allow wrapping on small screens */
 }
@@ -65,8 +65,9 @@ body {
 /* Selected Stream State */
 .form-check-input-stream:checked + label .stream-icon {
     border-color: #0d6efd; /* Blue border when selected */
-    transform: translateY(-5px);
-    box-shadow: 0 8px 20px rgba(13, 110, 253, 0.3);
+    transform: scale(1.2); /* Popup effect only (no translateY) */
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3); /* Deeper shadow */
+    z-index: 10;
 }
 
 /* Genre Selection - Pills (Chips) Layout */
